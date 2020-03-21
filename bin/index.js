@@ -20,31 +20,31 @@ function parseResult(fullObjArr){
 
     //console.log(getDateString())
 
-    var correctedObj = [];
-    var plist = "";
-    var caselist = "";
+    //var correctedObj = [];
+    var plist = [];
+    var caselist = [];
 
     for (var i = 0 ; i<fullObjArr.length-1 ; i++){
         var node = fullObjArr[i];
 
-       var locationObj = {};
-       locationObj.place = node[1];
-       locationObj.cases = node[2];
+      // var locationObj = {};
+      // locationObj.place = node[1];
+      // locationObj.cases = node[2];
 
-       correctedObj.push(locationObj);
+       //correctedObj.push(locationObj);
 
-       plist += locationObj.place+","
-       caselist += locationObj.cases+","
+       plist.push(node[1])
+       caselist.push(node[2])
 
     }
 
 
-  //  console.log(plist)
-//    console.log(caselist)
+    console.log(plist.length)
+    console.log(caselist.length)
 
-    fs.appendFileSync('data.csv', plist);
+    fs.appendFileSync('data.csv', plist.join(","));
     fs.appendFileSync('data.csv', "\n");
-    fs.appendFileSync('data.csv', caselist);
+    fs.appendFileSync('data.csv', caselist.join(","));
 
 
     //csvWriter.writeRecords(correctedObj)
