@@ -2,10 +2,7 @@
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const fs = require('fs');
 var request = require("request")
-
-
-
-
+var dateStr = getDateString();
 var url = "https://www.bbc.co.uk/indepthtoolkit/data-sets/coronavirus_lookup/json"
 
 request({
@@ -20,10 +17,6 @@ request({
 
 
 function parseResult(fullObjArr){
-    //console.log(fullObjArr)
-
-    //console.log(getDateString())
-
     var correctedObj = [];
 
     for (var i = 0 ; i<fullObjArr.length-1 ; i++){
@@ -34,11 +27,7 @@ function parseResult(fullObjArr){
        locationObj.cases = node[2];
 
        correctedObj.push(locationObj);
-
-       
-
     }
-
 
     csvWriter.writeRecords(correctedObj)
 }
@@ -58,6 +47,6 @@ const csvWriter = createCsvWriter({
     path: 'data.csv',
     header: [
       {id: 'place', title: 'Place'},
-      {id: 'cases', title: 'cases'},
+      {id: 'cases', title: dateStr},
     ]
   });
