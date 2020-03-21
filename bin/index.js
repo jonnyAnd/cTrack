@@ -3,6 +3,8 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const fs = require('fs');
 var request = require("request")
 var dateStr = getDateString();
+var fileOutput = "csvFiles/"+dateStr+".csv"
+
 var url = "https://www.bbc.co.uk/indepthtoolkit/data-sets/coronavirus_lookup/json"
 
 request({
@@ -17,6 +19,12 @@ request({
 
 
 function parseResult(fullObjArr){
+
+
+
+console.log(dateStr)
+
+
     var correctedObj = [];
 
     for (var i = 0 ; i<fullObjArr.length-1 ; i++){
@@ -38,13 +46,13 @@ function getDateString(){
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     
-    today = dd + '/' + mm + '/' + yyyy;
+    today = dd + '-' + mm + '-' + yyyy;
     
-    return today;
+    return today.toString();
 }
 
 const csvWriter = createCsvWriter({
-    path: 'data.csv',
+    path: fileOutput,
     header: [
       {id: 'place', title: 'Place'},
       {id: 'cases', title: dateStr},
