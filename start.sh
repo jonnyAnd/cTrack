@@ -10,3 +10,11 @@ wget -O ./backupData/$DATE_STR.json https://www.bbc.co.uk/indepthtoolkit/data-se
 
 #Do the node stuff
 node .
+
+
+// git add 
+git add backupData/
+git add csvFiles/
+
+git commit -m "Auto commit of data"
+git push origin master

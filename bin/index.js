@@ -20,8 +20,6 @@ request({
 
 function parseResult(fullObjArr){
 
-
-
 console.log(dateStr)
 
 
